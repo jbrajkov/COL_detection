@@ -30,3 +30,13 @@ Run the example script run_example.py
 ## Notes
 - Paths must be adapted to the user environment
 - Input data: NetCDF (z500 + precipitation)
+
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.19604862.svg)](https://doi.org/10.5281/zenodo.19604862)
+
+## 📖 Citation
+
+If you use this code, please cite:
+
+Brajkovic, J. (2026).  
+Cut-Off Low Detection Algorithm.  
+Zenodo. https://doi.org/10.5281/zenodo.19604862
