@@ -1,0 +1,9 @@
+numpy
+xarray
+pandas
+matplotlib
+cartopy
+scipy
+statsmodels
+pymannkendall
+fiona
