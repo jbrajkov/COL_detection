@@ -55,9 +55,25 @@ qu_rain : float
 
 test_algo : int (0 or 1)
     If 1, runs a single test case with plotting enabled
+
+showplot : int (0 or 1)
+    If 1, shows the plot at each algorithm step, if 0 the figures are saved i the ouput directory
 """
 
 from COL_detection import col_detection
+import os
+
+# Get current script directory
+base_dir = os.path.dirname(os.path.abspath(__file__))
+
+# Paths relative to repository
+dire = os.path.join(base_dir, "sample_data") + "/"
+dir_out = base_dir + "/"
+
+fnm = os.path.join(dire, "ERA5_mask_LS.nc")
+fn_topo = os.path.join(dire, "ERA5_topo.nc")
+
+fns = [os.path.join(dire, "sample_daily_z500.nc")]
 
 mo = 'ERA5'
 ts = 24
@@ -65,35 +81,26 @@ ts = 24
 thp = 0
 cta = 50000
 qup = 99.9
-qu_rain=95
+qu_rain=99
 
 
 test_algo = 1
+showplot = 0
 
-"string to format output text files names"
+# string to format output text file names
 
 grid = '_ERA5grid'
 add_message = ''
 
     
-string_extension = f"_qu{qup:.0f}_area_{cta:.0f}km2_{ts:.0f}h_{thp:.0f}mm{grid}{add_message}"
+string_extension = f"_qu{qup:.1f}_area_{cta:.0f}km2_{ts:.0f}h_{thp:.0f}mm{grid}{add_message}"
 
 mod='ERA5'
-  
-dire = '/home/josip/Desktop/scripts/test_algo/'
-dir_out='/home/josip/Desktop/'
-fnm=f'{dire}ERA5_mask_LS.nc'
-fn_topo=f'{dire}ERA5_topo.nc'
-    
-  
-fns = [dire+'sample_daily_z500.nc']
-
-
 
 ec = col_detection(fns=fns,
                  varnames=['z500'],
                  fnp=dire+'sample_daily_precip.nc',
-                 dir_out="/home/josip/",
+                 dir_out=dir_out,
                  ave_quant=1,
                  qu=qup,
                  topo_mask=0,
@@ -109,7 +116,8 @@ ec.COL_research(plt_or_not=test_algo, mod=mod, ts=ts, thp=thp, thf=thp, dirout=d
                 lon_min=-20,
                 test_mode=test_algo,
                 d2p=None,  
-                criteria=qu_rain,                        
+                criteria=qu_rain, 
+                showpl=showplot                       
                 )
 ec.close()
 del ec
